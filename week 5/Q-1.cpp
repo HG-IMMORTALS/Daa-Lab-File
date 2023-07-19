@@ -1,0 +1,53 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void getMaxOccurringChar(char arr[], int n)
+{
+    int count[26]={0}; 
+    
+    for(int i=0;i<n;i++) 
+    {
+        count[arr[i]-'a']++; 
+    }
+    
+    int max_count=0;
+    char max_char=' ';
+    for(int i=0;i<26;i++)
+    {
+        if(count[i]>max_count) 
+        {
+            max_count=count[i]; 
+            max_char=char(i + 'a'); 
+        }
+    }
+    
+    if(max_count > 1)
+    {
+        cout<<max_char<<" - "<<max_count<<endl;
+    } 
+    else 
+    {
+        cout<<"No Duplicates Present"<<endl;
+    }
+}
+
+int main() 
+{
+    int t;
+    cin>>t;
+    
+    while(t--)
+    {
+        int n;
+        cin>>n;
+        
+        char arr[n];
+        for(int i=0;i<n;i++) 
+        {
+            cin>>arr[i];
+        }
+        
+        getMaxOccurringChar(arr, n);
+    }
+    return 0;
+}

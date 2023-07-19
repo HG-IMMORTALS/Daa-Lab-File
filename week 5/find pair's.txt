@@ -1,0 +1,61 @@
+find pair's
+
+#include<bits/stdc++.h>
+using namespace std;
+void count_sort(int arr[],int n){
+    int maxi = 0;
+    for(int i=0;i<n;i++){
+        maxi = max(maxi,arr[i]);
+    }
+    // cout<<maxi<<endl;
+    int temp[maxi];
+    for(int i=0;i<=maxi;i++){
+        temp[i] = 0;
+    }
+    for(int i=0;i<n;i++){
+        temp[arr[i]]++;
+    }
+    int j=0;
+    for(int i=0;i<=maxi;i++){
+        while(temp[i]!=0){
+            arr[j++] = i;
+            temp[i]--;
+        }
+     }
+    // for(int i=0;i<n;i++){
+    //     cout<<arr[i]<<" ";
+    // }
+}
+void find_pair(int arr[],int n,int key){
+    count_sort(arr,n);
+    int i=0;int j=n-1;
+    while(i<j){
+        int sum=arr[i]+arr[j];
+        if(sum==key){
+            cout<<arr[i]<<" "<<arr[j];
+            return;
+        }
+        else if(sum<key){
+            i++;
+        }
+        else{
+            j--;
+        }
+    }
+    cout<<"Pair not found."<<endl;
+}
+
+int main(){
+    int n,key;
+    cout<<"Enter the size of the array: ";
+    cin>>n;
+    int arr[n];
+    cout<<"Enter the elements in array: ";
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    cout<<"Enter the key element: ";
+    cin>>key;
+    find_pair(arr,n,key);
+    return 0;
+}
